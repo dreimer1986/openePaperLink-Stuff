@@ -25,12 +25,12 @@ else:
 
 img = img.convert('RGB')
 
-# Based on my random pic script, but stretched to height, not width.
-# Made for a 6 Tag mosaique. Sizes made for Solum M2 2.6" Tags. The three
-# on the right are turned by 180° to get rid of the barcode in the middle
-# of the image. Borders are approximated with 25 Pixel size. Thus between
-# all the pics are always 50 Pixels of nothingness due to the borders of
-# the two Tags lying next to each other.
+# Based on my random pic script. Made for a 6 Tag mosaique. Sizes made
+# for Solum M2 2.6" Tags. The three on the right are turned by 180° to
+# get rid of the barcode in the middle of the image. Borders are
+# approximated with 25 Pixel size. Thus between all the pics are always
+# 50 Pixels of nothingness due to the borders of the two Tags lying next
+# to each other.
 
 #------------------------------------------------------------------------
 #- (0,0)                            -- (346,0)                          -
