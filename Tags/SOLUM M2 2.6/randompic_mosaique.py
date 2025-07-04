@@ -6,14 +6,23 @@ except:
     os.system('pip install pillow')
     from PIL import Image
 
+mywidth = 642
 myheight = 556
+
 os.chdir('./media/')
 random_file=random.choice(os.listdir("."))
 
 img = Image.open(random_file)
-wpercent = (myheight/float(img.size[1]))
-vsize = int((float(img.size[0])*float(wpercent)))
-img = img.resize((vsize,myheight),1)
+
+if img.size[0] > img.size[1]:
+    wpercent = (myheight/float(img.size[1]))
+    vsize = int((float(img.size[0])*float(wpercent)))
+    img = img.resize((vsize,myheight),1)
+else:
+    wpercent = (mywidth/float(img.size[0]))
+    hsize = int((float(img.size[1])*float(wpercent)))
+    img = img.resize((mywidth,hsize),1)
+
 img = img.convert('RGB')
 
 # Based on my random pic script, but stretched to height, not width.
