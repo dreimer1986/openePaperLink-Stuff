@@ -6,8 +6,8 @@ except:
     os.system('pip install pillow')
     from PIL import Image
 
-mywidth = 642
-myheight = 556
+mywidth = 639
+myheight = 550
 
 os.chdir('./media/')
 random_file=random.choice(os.listdir("."))
@@ -25,42 +25,42 @@ else:
 
 img = img.convert('RGB')
 
-# Based on my random pic script. Made for a 6 Tag mosaique. Sizes made
-# for Solum M2 2.6" Tags. The three on the right are turned by 180° to
-# get rid of the barcode in the middle of the image. Borders are
-# approximated with 25 Pixel size. Thus between all the pics are always
-# 50 Pixels of nothingness due to the borders of the two Tags lying next
-# to each other.
+# Based on my random pic script, but stretched to height, not width.
+# Made for a 6 Tag mosaique. Sizes made for Solum M2 2.6" Tags. The three
+# on the right are turned by 180° to get rid of the barcode in the middle
+# of the image. Borders are approximated with 25 Pixel size. Thus between
+# all the pics are always 47(,36) Pixels of nothingness due to the
+# borders of the two Tags lying next to each other.
 
 #------------------------------------------------------------------------
-#- (0,0)                            -- (346,0)                          -
+#- (0,0)                            -- (343,0)                          -
 #-                                  --                                  -
-#-                        (296,152) --                        (642,152) -
+#-                        (296,152) --                        (639,152) -
 #------------------------------------------------------------------------
 #------------------------------------------------------------------------
-#- (0,202)                          --                                  -
+#- (0,199)                          -- (343,199)                        -
 #-                                  --                                  -
-#-                        (296,354) --                        (642,354) -
+#-                        (296,351) --                        (639,351) -
 #------------------------------------------------------------------------
 #------------------------------------------------------------------------
-#- (0,404)                          -- (346,404)                        -
+#- (0,398)                          -- (343,398)                        -
 #-                                  --                                  -
-#-                        (296,556) --                        (642,556) -
+#-                        (296,550) --                        (639,550) -
 #------------------------------------------------------------------------
 
 im_crop1 = img.crop((0, 0, 296, 152))
 im_crop1.save('./frame_temp/tempframe1.jpg', quality=95)
-im_crop2 = img.crop((346, 0, 642, 152))
+im_crop2 = img.crop((343, 0, 639, 152))
 im_crop2 = im_crop2.rotate(180)
 im_crop2.save('./frame_temp/tempframe2.jpg', quality=95)
-im_crop3 = img.crop((0, 202, 296, 354))
+im_crop3 = img.crop((0, 199, 296, 351))
 im_crop3.save('./frame_temp/tempframe3.jpg', quality=95)
-im_crop4 = img.crop((346, 202, 642, 354))
+im_crop4 = img.crop((343, 199, 639, 351))
 im_crop4 = im_crop4.rotate(180)
 im_crop4.save('./frame_temp/tempframe4.jpg', quality=95)
-im_crop5 = img.crop((0, 404, 296, 556))
+im_crop5 = img.crop((0, 398, 296, 550))
 im_crop5.save('./frame_temp/tempframe5.jpg', quality=95)
-im_crop6 = img.crop((346, 404, 642, 556))
+im_crop6 = img.crop((343, 398, 639, 550))
 im_crop6 = im_crop6.rotate(180)
 im_crop6.save('./frame_temp/tempframe6.jpg', quality=95)
 
