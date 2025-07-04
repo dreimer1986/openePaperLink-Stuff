@@ -1,0 +1,46 @@
+alias: WLAN Niflheim QR 2.0"
+description: ""
+triggers:
+  - trigger: time
+    at: "01:00:00"
+conditions:
+  - condition: time
+    after: "06:00:00"
+    before: "02:00:00"
+actions:
+  - action: open_epaper_link.drawcustom
+    metadata: {}
+    data:
+      ttl: 86400
+      background: white
+      dither: 1
+      rotate: 0
+      dry-run: false
+      payload:
+        - type: qrcode
+          data: WIFI:T:WPA;S:Niflheim;P:rxxxxxxxxx;;
+          x: 0
+          "y": 0
+          boxsize: 4
+          border: 0
+          color: black
+          bgcolor: white
+        - type: line
+          x_start: 0
+          x_end: 152
+          y_start: 160
+          y_end: 160
+          width: 1
+          fill: black
+        - type: text
+          value: "WLAN: Niflheim"
+          font: ppb.ttf
+          x: 76
+          "y": 180
+          size: 12
+          color: black
+          anchor: mm
+    target:
+      device_id:
+        - 899538f4d7a1d978fc5a55c4761c6652
+mode: single

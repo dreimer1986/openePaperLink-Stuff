@@ -1,0 +1,31 @@
+alias: Bilderrahmen
+description: ""
+triggers:
+  - trigger: time_pattern
+    minutes: /29
+conditions:
+  - condition: time
+    after: "06:00:00"
+    before: "02:00:00"
+actions:
+  - action: shell_command.random_img_url
+    metadata: {}
+    data: {}
+  - action: open_epaper_link.drawcustom
+    data:
+      ttl: 86400
+      background: white
+      dither: 1
+      rotate: 0
+      dry-run: false
+      payload:
+        - type: dlimg
+          url: frame_temp/tempframe.jpg
+          x: 0
+          "y": 0
+          resize_method: cover
+          xsize: 960
+          ysize: 768
+    target:
+      device_id: 90e9b26b29858cc7284e3540573ae9c0
+mode: single

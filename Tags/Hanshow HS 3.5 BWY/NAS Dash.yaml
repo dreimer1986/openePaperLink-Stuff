@@ -1,0 +1,567 @@
+alias: NAS-Dash 3.5"
+description: ""
+triggers:
+  - minutes: /25
+    trigger: time_pattern
+conditions:
+  - condition: time
+    after: "06:00:00"
+    before: "02:00:00"
+actions:
+  - data:
+      ttl: 86400
+      background: white
+      dither: 1
+      rotate: 0
+      dry-run: false
+      payload:
+        - type: rectangle
+          x_start: 95
+          x_end: 287
+          y_start: 0
+          y_end: 33
+          width: 1
+          fill: white
+          outline: black
+        - type: icon
+          value: nas
+          x: 99
+          "y": 1
+          size: 33
+          color: black
+        - type: text
+          value: NAS-Status
+          font: ppb.ttf
+          x: 191
+          "y": 10
+          size: 16
+          color: black
+          anchor: mm
+        - type: text
+          value: "{{ states('sensor.nas2_volume_1_status') | string }}"
+          font: ppb.ttf
+          x: 191
+          "y": 23
+          size: 10
+          color: black
+          anchor: mm
+        - type: rectangle
+          x_start: 95
+          x_end: 287
+          y_start: 33
+          y_end: 61
+          width: 1
+          fill: white
+          outline: accent
+        - type: icon
+          value: calendar-clock
+          x: 103
+          "y": 38
+          size: 20
+          color: black
+        - type: multiline
+          value: Letztes|Update
+          delimiter: "|"
+          font: ppb.ttf
+          offset_y: 12
+          start_y: 43
+          x: 124
+          size: 10
+          align: center
+          spacing: 12
+          color: black
+          y_padding: 0
+        - type: text
+          value: "{{ states('sensor.time') | string }} "
+          font: ppb.ttf
+          x: 239
+          "y": 42
+          size: 10
+          color: accent
+          anchor: mm
+        - type: text
+          value: "{{ states('sensor.date') | string }} "
+          font: ppb.ttf
+          x: 239
+          "y": 53
+          size: 10
+          color: accent
+          anchor: mm
+        - type: rectangle
+          x_start: 0
+          x_end: 95
+          y_start: 0
+          y_end: 165
+          width: 1
+          fill: white
+          outline: black
+        - type: icon
+          value: memory
+          x: 0
+          "y": 0
+          size: 35
+          color: black
+        - type: text
+          value: RAM
+          font: ppb.ttf
+          x: 57
+          "y": 16
+          size: 13
+          color: black
+          anchor: mm
+        - type: line
+          x_start: 23
+          x_end: 72
+          y_start: 33
+          y_end: 33
+          width: 1
+          fill: black
+        - type: text
+          value: >-
+            {{ states('sensor.nas2_memory_total_real', with_unit=True) | string
+            }}
+          font: ppb.ttf
+          x: 57
+          "y": 46
+          size: 10
+          color: accent
+          anchor: rm
+        - type: text
+          value: Total
+          font: ppb.ttf
+          x: 60
+          "y": 46
+          size: 10
+          color: black
+          anchor: lm
+        - type: text
+          value: >-
+            {{ states('sensor.nas2_memory_available_real', with_unit=True) |
+            string }}
+          font: ppb.ttf
+          x: 57
+          "y": 62
+          size: 10
+          color: accent
+          anchor: rm
+        - type: text
+          value: Frei
+          font: ppb.ttf
+          x: 60
+          "y": 62
+          size: 10
+          color: black
+          anchor: lm
+        - type: text
+          value: "{{ states('sensor.nas2_memory_usage_real') | string }} %"
+          font: ppb.ttf
+          x: 57
+          "y": 79
+          size: 10
+          color: accent
+          anchor: rm
+        - type: text
+          value: Verw.
+          font: ppb.ttf
+          x: 60
+          "y": 79
+          size: 10
+          color: black
+          anchor: lm
+        - type: line
+          x_start: 0
+          x_end: 95
+          y_start: 88
+          y_end: 88
+          width: 1
+          fill: black
+        - type: icon
+          value: lan-connect
+          x: 3
+          "y": 91
+          size: 26
+          color: black
+        - type: text
+          value: Netzwerk
+          font: ppb.ttf
+          x: 60
+          "y": 104
+          size: 13
+          color: black
+          anchor: mm
+        - type: line
+          x_start: 23
+          x_end: 72
+          y_start: 121
+          y_end: 121
+          width: 1
+          fill: black
+        - type: text
+          value: "{{ states('sensor.nas2_network_up', with_unit=True) | string }}"
+          font: ppb.ttf
+          x: 72
+          "y": 134
+          size: 10
+          color: accent
+          anchor: rm
+        - type: text
+          value: UL
+          font: ppb.ttf
+          x: 74
+          "y": 134
+          size: 10
+          color: black
+          anchor: lm
+        - type: text
+          value: "{{ states('sensor.nas2_network_down', with_unit=True) | string }}"
+          font: ppb.ttf
+          x: 72
+          "y": 153
+          size: 10
+          color: accent
+          anchor: rm
+        - type: text
+          value: DL
+          font: ppb.ttf
+          x: 74
+          "y": 153
+          size: 10
+          color: black
+          anchor: lm
+        - type: rectangle
+          x_start: 95
+          x_end: 191
+          y_start: 61
+          y_end: 165
+          width: 1
+          fill: white
+          outline: black
+        - type: text
+          value: System
+          font: ppb.ttf
+          x: 143
+          "y": 69
+          size: 13
+          color: black
+          anchor: mm
+        - type: icon
+          value: >-
+            {{ 'alert' if is_state('binary_sensor.nas_health', 'on') else
+            'check-circle-outline' }}
+          x: 160
+          "y": 77
+          size: 22
+          color: >-
+            {{ 'accent' if is_state('binary_sensor.nas_health', 'on') else
+            'black' }}
+        - type: icon
+          value: cpu-64-bit
+          x: 102
+          "y": 77
+          size: 22
+          color: black
+        - type: text
+          value: "{{ states('sensor.nas2_cpu_utilization_total') | string }}%"
+          font: ppb.ttf
+          x: 126
+          "y": 88
+          size: 10
+          color: accent
+          anchor: lm
+        - type: icon
+          value: thermometer
+          x: 101
+          "y": 100
+          size: 22
+          color: black
+        - type: text
+          value: "{{ states('sensor.nas2_temperature', with_unit=True) | string }}"
+          font: ppb.ttf
+          x: 126
+          "y": 112
+          size: 10
+          color: accent
+          anchor: lm
+        - type: icon
+          value: power-plug-outline
+          x: 103
+          "y": 124
+          size: 22
+          color: black
+        - type: text
+          value: "{{ states('sensor.og_power_consumption', with_unit=True) | string }}"
+          font: ppb.ttf
+          x: 126
+          "y": 135
+          size: 10
+          color: accent
+          anchor: lm
+        - type: icon
+          value: lightning-bolt-outline
+          x: 103
+          "y": 146
+          size: 22
+          color: black
+        - type: text
+          value: "{{ states('sensor.og_total_energy', with_unit=True) | string }}"
+          font: ppb.ttf
+          x: 126
+          "y": 157
+          size: 10
+          color: accent
+          anchor: lm
+        - type: rectangle
+          x_start: 191
+          x_end: 287
+          y_start: 61
+          y_end: 165
+          width: 1
+          fill: white
+          outline: black
+        - type: text
+          value: Gesundheit
+          font: ppb.ttf
+          x: 239
+          "y": 69
+          size: 13
+          color: black
+          anchor: mm
+        - type: icon
+          value: >-
+            {{ 'alert' if is_state('binary_sensor.nas_health_smart', 'on') else
+            'check-circle-outline' }}
+          x: 198
+          "y": 77
+          size: 22
+          color: >-
+            {{ 'accent' if is_state('binary_sensor.nas_health_smart', 'on') else
+            'black' }}
+        - type: text
+          value: SMART
+          font: ppb.ttf
+          x: 224
+          "y": 88
+          size: 10
+          color: black
+          anchor: lm
+        - type: icon
+          value: >-
+            {{ 'alert' if is_state('binary_sensor.nas_health_drive_temp', 'on')
+            else 'check-circle-outline' }}
+          x: 198
+          "y": 99
+          size: 22
+          color: >-
+            {{ 'accent' if is_state('binary_sensor.nas_health_drive_temp', 'on')
+            else 'black' }}
+        - type: text
+          value: LWTemp
+          font: ppb.ttf
+          x: 224
+          "y": 111
+          size: 10
+          color: black
+          anchor: lm
+        - type: icon
+          value: >-
+            {{ 'alert' if is_state('binary_sensor.nas2_security_status', 'on')
+            else 'check-circle-outline' }}
+          x: 198
+          "y": 122
+          size: 22
+          color: >-
+            {{ 'accent' if is_state('binary_sensor.nas2_security_status', 'on')
+            else 'black' }}
+        - type: text
+          value: Sicherheit
+          font: ppb.ttf
+          x: 224
+          "y": 134
+          size: 10
+          color: black
+          anchor: lm
+        - type: icon
+          value: >-
+            {{ 'alert' if is_state('update.nas2_dsm_update', 'on') else
+            'check-circle-outline' }}
+          x: 198
+          "y": 144
+          size: 22
+          color: >-
+            {{ 'accent' if is_state('update.nas2_dsm_update', 'on') else 'black'
+            }}
+        - type: text
+          value: Update
+          font: ppb.ttf
+          x: 224
+          "y": 156
+          size: 10
+          color: black
+          anchor: lm
+        - type: rectangle
+          x_start: 287
+          x_end: 383
+          y_start: 0
+          y_end: 165
+          width: 1
+          fill: white
+          outline: black
+        - type: icon
+          value: harddisk
+          x: 287
+          "y": 0
+          size: 34
+          color: black
+        - type: multiline
+          value: LWs|RAID
+          delimiter: "|"
+          font: ppb.ttf
+          offset_y: 12
+          start_y: 9
+          x: 330
+          size: 13
+          align: center
+          spacing: 12
+          color: black
+          y_padding: 0
+        - type: text
+          value: 4x 12TB - SHR
+          font: ppb.ttf
+          x: 335
+          "y": 39
+          size: 10
+          color: black
+          anchor: mm
+        - type: line
+          x_start: 311
+          x_end: 359
+          y_start: 46
+          y_end: 46
+          width: 1
+          fill: black
+        - type: text
+          value: >-
+            {{ states('sensor.nas2_volume_1_used_space', with_unit=True) |
+            string }}
+          font: ppb.ttf
+          x: 348
+          "y": 55
+          size: 10
+          color: accent
+          anchor: rm
+        - type: text
+          value: Verw.
+          font: ppb.ttf
+          x: 351
+          "y": 55
+          size: 10
+          color: black
+          anchor: lm
+        - type: text
+          value: "{{ states('sensor.nas2_volume_1_volume_used') | string }}%"
+          font: ppb.ttf
+          x: 348
+          "y": 69
+          size: 10
+          color: accent
+          anchor: rm
+        - type: text
+          value: "~"
+          font: ppb.ttf
+          x: 351
+          "y": 69
+          size: 10
+          color: black
+          anchor: lm
+        - type: text
+          value: "{{ states('sensor.nas2_volume_1_average_disk_temp') | string }}°C"
+          font: ppb.ttf
+          x: 348
+          "y": 83
+          size: 10
+          color: accent
+          anchor: rm
+        - type: text
+          value: "~"
+          font: ppb.ttf
+          x: 351
+          "y": 79
+          size: 10
+          color: black
+          anchor: lm
+        - type: line
+          x_start: 311
+          x_end: 359
+          y_start: 90
+          y_end: 90
+          width: 1
+          fill: black
+        - type: text
+          value: "LW1:"
+          font: ppb.ttf
+          x: 328
+          "y": 99
+          size: 10
+          color: black
+          anchor: rm
+        - type: text
+          value: "{{ states('sensor.nas2_drive_1_status') | string }}"
+          font: ppb.ttf
+          x: 328
+          "y": 99
+          size: 10
+          color: accent
+          anchor: lm
+        - type: text
+          value: "LW2:"
+          font: ppb.ttf
+          x: 328
+          "y": 113
+          size: 10
+          color: black
+          anchor: rm
+        - type: text
+          value: "{{ states('sensor.nas2_drive_2_status') | string }}"
+          font: ppb.ttf
+          x: 328
+          "y": 113
+          size: 10
+          color: accent
+          anchor: lm
+        - type: text
+          value: "LW3:"
+          font: ppb.ttf
+          x: 328
+          "y": 127
+          size: 10
+          color: black
+          anchor: rm
+        - type: text
+          value: "{{ states('sensor.nas2_drive_3_status') | string }}"
+          font: ppb.ttf
+          x: 328
+          "y": 127
+          size: 10
+          color: accent
+          anchor: lm
+        - type: text
+          value: "LW4:"
+          font: ppb.ttf
+          x: 328
+          "y": 143
+          size: 10
+          color: black
+          anchor: rm
+        - type: text
+          value: "{{ states('sensor.nas2_drive_4_status') | string }}"
+          font: ppb.ttf
+          x: 328
+          "y": 143
+          size: 10
+          color: accent
+          anchor: lm
+    action: open_epaper_link.drawcustom
+    target:
+      device_id:
+        - 064e96e4222d172d8ee72fb541f96b09
+mode: restart

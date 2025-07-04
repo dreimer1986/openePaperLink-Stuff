@@ -1,0 +1,69 @@
+alias: Xmas Advent Countdown
+description: ""
+triggers:
+  - at: "00:00:00"
+    trigger: time
+conditions:
+  - condition: time
+    after: "06:00:00"
+    before: "02:00:00"
+actions:
+  - data:
+      ttl: 86400
+      background: white
+      dither: 1
+      rotate: 270
+      dry-run: false
+      payload:
+        - type: text
+          value: "{{ '' if days_until_xmas<=0 else days_until_xmas }}"
+          font: ppb.ttf
+          x: 54
+          "y": "{{ 143 if days_until_xmas > 99 else 137 | int }}"
+          size: "{{ 60 if days_until_xmas > 99 else 84 | int }}"
+          color: accent
+          anchor: mm
+          y_padding: 0
+          spacing: 2
+        - type: dlimg
+          url: |-
+            {% if days_until_xmas <= 25 %}
+              https://www.chunkymedia.co.uk/epaper-xmas/dither_it_epaper-xmas-{{ days_until_xmas | string }}.jpg
+            {% else %} 
+              https://www.chunkymedia.co.uk/epaper-xmas/dither_it_epaper-xmas-grinch.jpg
+            {% endif %}
+          x: 12
+          "y": 5
+          xsize: 92
+          ysize: "{{ 150 if days_until_xmas<=0 else 106 }}"
+          rotate: 0
+        - type: text
+          value: |-
+            {% if days_until_xmas > 0 %}
+              {{ ("Tage" if days_until_xmas > 1 else "Tag") | string + " bis"}} 
+            {% else %} 
+              Frohe
+            {% endif %}
+          font: ppb.ttf
+          x: 54
+          "y": 174
+          size: 14
+          color: black
+          anchor: mm
+        - type: text
+          value: Weihnachten
+          font: ppb.ttf
+          x: 54
+          size: 14
+          color: black
+          anchor: mm
+    action: open_epaper_link.drawcustom
+    target:
+      device_id: ad56f2a9017d86d2dd2e4c901f633e30
+mode: restart
+variables:
+  days_until_xmas: >-
+    {% set days_until = (today_at().replace(day=25, month=12) | as_local -
+    today_at()).days | int %} {% if days_until< 0 %}
+    {{(today_at().replace(day=25, month=12, year=now().year+1) | as_local -
+    today_at()).days | int }} {% else %} {{days_until}} {% endif %}
