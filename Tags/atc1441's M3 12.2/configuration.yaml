@@ -1,0 +1,2 @@
+shell_command:
+  random_img_url: python3 randompic.py
