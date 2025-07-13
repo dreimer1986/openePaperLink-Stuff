@@ -24,6 +24,6 @@ else:
     img = img.resize((mywidth,hsize),1)
 
 img = img.convert('RGB')
-img.save('./frame_temp/tempframe.jpg', quality=95)
+img.save('./frame_temp/tempframe.jpg', quality=85)
 
 print (random_file)

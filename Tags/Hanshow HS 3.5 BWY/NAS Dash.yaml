@@ -1,12 +1,15 @@
 alias: NAS-Dash 3.5"
 description: ""
 triggers:
-  - minutes: /25
+  - minutes: /28
     trigger: time_pattern
 conditions:
   - condition: time
     after: "06:00:00"
     before: "02:00:00"
+  - condition: state
+    entity_id: sensor.pixel_7_pro_wi_fi_connection
+    state: Asgaard
 actions:
   - data:
       ttl: 86400
