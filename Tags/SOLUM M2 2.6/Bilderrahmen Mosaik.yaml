@@ -2,11 +2,14 @@ alias: Bilderrahmen Mosaik
 description: ""
 triggers:
   - trigger: time_pattern
-    minutes: /35
+    hours: /1
 conditions:
   - condition: time
     after: "06:00:00"
     before: "02:00:00"
+  - condition: state
+    entity_id: sensor.pixel_7_pro_wi_fi_connection
+    state: Asgaard
 actions:
   - action: shell_command.random_img_url_mosaique
     metadata: {}
@@ -14,7 +17,7 @@ actions:
   - delay:
       hours: 0
       minutes: 0
-      seconds: 5
+      seconds: 15
       milliseconds: 0
   - action: open_epaper_link.drawcustom
     data:
@@ -35,8 +38,8 @@ actions:
       device_id: 81f54eb3b2de1f9170283dd068c4923e
   - delay:
       hours: 0
-      minutes: 0
-      seconds: 30
+      minutes: 1
+      seconds: 0
       milliseconds: 0
   - action: open_epaper_link.drawcustom
     data:
@@ -57,8 +60,8 @@ actions:
       device_id: d289b497b44e2d5a8458e1f8bb8bf698
   - delay:
       hours: 0
-      minutes: 0
-      seconds: 30
+      minutes: 1
+      seconds: 0
       milliseconds: 0
   - action: open_epaper_link.drawcustom
     data:
@@ -79,8 +82,8 @@ actions:
       device_id: 51eccc4e8ff1efd3e3e82938c9ba18e7
   - delay:
       hours: 0
-      minutes: 0
-      seconds: 30
+      minutes: 1
+      seconds: 0
       milliseconds: 0
   - action: open_epaper_link.drawcustom
     data:
@@ -101,8 +104,8 @@ actions:
       device_id: 96f45dfa34e9bd962b6adfd0abd31f10
   - delay:
       hours: 0
-      minutes: 0
-      seconds: 30
+      minutes: 1
+      seconds: 0
       milliseconds: 0
   - action: open_epaper_link.drawcustom
     data:
@@ -123,8 +126,8 @@ actions:
       device_id: 0fc632bdd0e23daf43e32ed6d094966e
   - delay:
       hours: 0
-      minutes: 0
-      seconds: 30
+      minutes: 1
+      seconds: 0
       milliseconds: 0
   - action: open_epaper_link.drawcustom
     data:

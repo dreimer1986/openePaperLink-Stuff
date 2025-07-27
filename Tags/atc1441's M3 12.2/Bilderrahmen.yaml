@@ -7,10 +7,18 @@ conditions:
   - condition: time
     after: "06:00:00"
     before: "02:00:00"
+  - condition: state
+    entity_id: sensor.pixel_7_pro_wi_fi_connection
+    state: Asgaard
 actions:
   - action: shell_command.random_img_url
     metadata: {}
     data: {}
+  - delay:
+      hours: 0
+      minutes: 0
+      seconds: 15
+      milliseconds: 0
   - action: open_epaper_link.drawcustom
     data:
       ttl: 86400
@@ -27,5 +35,6 @@ actions:
           xsize: 960
           ysize: 768
     target:
-      device_id: 90e9b26b29858cc7284e3540573ae9c0
+      device_id:
+        - 90e9b26b29858cc7284e3540573ae9c0
 mode: single

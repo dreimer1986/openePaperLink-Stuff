@@ -1,12 +1,15 @@
 alias: Weatherman 3.5"
 description: ""
 triggers:
-  - minutes: /35
+  - minutes: /27
     trigger: time_pattern
 conditions:
   - condition: time
     after: "06:00:00"
     before: "02:00:00"
+  - condition: state
+    entity_id: sensor.pixel_7_pro_wi_fi_connection
+    state: Asgaard
 actions:
   - data:
       ttl: 86400
@@ -133,7 +136,7 @@ actions:
           size: 46
           color: >-
             {{'accent' if state_attr('sensor.weatherman_data_tag','wm_cond_0')
-            in severe_weather else 'black' }} 
+            in severe_weather else 'black' }}
         - type: icon
           value: >-
             weather-{{ state_attr('sensor.weatherman_data_tag','wm_cond_1') |
@@ -143,7 +146,7 @@ actions:
           size: 46
           color: >-
             {{'accent' if state_attr('sensor.weatherman_data_tag','wm_cond_1')
-            in severe_weather else 'black' }} 
+            in severe_weather else 'black' }}
         - type: icon
           value: >-
             weather-{{ state_attr('sensor.weatherman_data_tag','wm_cond_2') |
@@ -153,7 +156,7 @@ actions:
           size: 46
           color: >-
             {{'accent' if state_attr('sensor.weatherman_data_tag','wm_cond_2')
-            in severe_weather else 'black' }}    
+            in severe_weather else 'black' }}
         - type: icon
           value: >-
             weather-{{ state_attr('sensor.weatherman_data_tag','wm_cond_3') |
@@ -163,7 +166,7 @@ actions:
           size: 46
           color: >-
             {{'accent' if state_attr('sensor.weatherman_data_tag','wm_cond_3')
-            in severe_weather else 'black' }}    
+            in severe_weather else 'black' }}
         - type: text
           value: >-
             {{ state_attr('sensor.weatherman_data_tag','wm_temp_0') | string
@@ -385,7 +388,7 @@ actions:
           size: 45
           color: >-
             {{'accent' if state_attr('sensor.weatherman_data_tag','wm_cond_5')
-            in severe_weather else 'black' }}  
+            in severe_weather else 'black' }}
         - type: icon
           value: >-
             weather-{{ state_attr('sensor.weatherman_data_tag','wm_cond_6') |
@@ -395,7 +398,7 @@ actions:
           size: 45
           color: >-
             {{'accent' if state_attr('sensor.weatherman_data_tag','wm_cond_6')
-            in severe_weather else 'black' }}    
+            in severe_weather else 'black' }}
         - type: icon
           value: >-
             weather-{{ state_attr('sensor.weatherman_data_tag','wm_cond_7') |
@@ -415,7 +418,7 @@ actions:
           size: 45
           color: >-
             {{'accent' if state_attr('sensor.weatherman_data_tag','wm_cond_8')
-            in severe_weather else 'black' }}    
+            in severe_weather else 'black' }}
         - type: text
           value: "{{ state_attr('sensor.weatherman_data_tag','wm_temp_4') | string }}"
           font: ppb.ttf

@@ -29,7 +29,7 @@ actions:
           url: |-
             {% if days_until_xmas <= 25 %}
               https://www.chunkymedia.co.uk/epaper-xmas/dither_it_epaper-xmas-{{ days_until_xmas | string }}.jpg
-            {% else %} 
+            {% else %}
               https://www.chunkymedia.co.uk/epaper-xmas/dither_it_epaper-xmas-grinch.jpg
             {% endif %}
           x: 12
@@ -40,8 +40,8 @@ actions:
         - type: text
           value: |-
             {% if days_until_xmas > 0 %}
-              {{ ("Tage" if days_until_xmas > 1 else "Tag") | string + " bis"}} 
-            {% else %} 
+              {{ ("Tage" if days_until_xmas > 1 else "Tag") | string + " bis"}}
+            {% else %}
               Frohe
             {% endif %}
           font: ppb.ttf
