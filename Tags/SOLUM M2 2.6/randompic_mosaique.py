@@ -1,4 +1,4 @@
-import os, random
+import os, random, json
 
 try:
     from PIL import Image
@@ -6,10 +6,32 @@ except:
     os.system('pip install pillow')
     from PIL import Image
 
+try:
+    from requests import get
+except:
+    os.system('pip install requests')
+    from requests import get
+
 mywidth = 639
 myheight = 550
 
-os.chdir('./media/')
+url = 'http://homeassistant.local:8123/api/states/device_tracker.pixel_7_pro'
+headers = {
+    'Authorization': 'Bearer ---',
+    'content-type': 'application/json'
+}
+
+NSFWVar = get(url, headers=headers)
+NSFWData = json.loads(NSFWVar.text)
+NSFWState = NSFWData["state"]
+
+if NSFWState == 'home':
+    folders = ['NSFW','Safe']
+    selected_folder = random.choice(folders)
+else:
+    selected_folder = 'Safe'
+
+os.chdir('./media/' + selected_folder)
 random_file=random.choice(os.listdir("."))
 
 img = Image.open(random_file)
@@ -49,19 +71,19 @@ img = img.convert('RGB')
 #------------------------------------------------------------------------
 
 im_crop1 = img.crop((0, 0, 296, 152))
-im_crop1.save('./frame_temp/tempframe1.jpg', quality=85)
+im_crop1.save('../frame_temp/tempframe1.jpg', quality=85)
 im_crop2 = img.crop((343, 0, 639, 152))
 im_crop2 = im_crop2.rotate(180)
-im_crop2.save('./frame_temp/tempframe2.jpg', quality=85)
+im_crop2.save('../frame_temp/tempframe2.jpg', quality=85)
 im_crop3 = img.crop((0, 199, 296, 351))
-im_crop3.save('./frame_temp/tempframe3.jpg', quality=85)
+im_crop3.save('../frame_temp/tempframe3.jpg', quality=85)
 im_crop4 = img.crop((343, 199, 639, 351))
 im_crop4 = im_crop4.rotate(180)
-im_crop4.save('./frame_temp/tempframe4.jpg', quality=85)
+im_crop4.save('../frame_temp/tempframe4.jpg', quality=85)
 im_crop5 = img.crop((0, 398, 296, 550))
-im_crop5.save('./frame_temp/tempframe5.jpg', quality=85)
+im_crop5.save('../frame_temp/tempframe5.jpg', quality=85)
 im_crop6 = img.crop((343, 398, 639, 550))
 im_crop6 = im_crop6.rotate(180)
-im_crop6.save('./frame_temp/tempframe6.jpg', quality=85)
+im_crop6.save('../frame_temp/tempframe6.jpg', quality=85)
 
 print (random_file)

@@ -1,41 +1,40 @@
-alias: NAS Warnung LED
-description: ""
-triggers:
+- id: '17495774855517'
+  alias: NAS Warnung LED
+  description: ''
+  triggers:
   - trigger: time_pattern
     minutes: /5
-conditions:
+  conditions:
   - condition: template
-    value_template: >-
-      {{states("sensor.nas2_volume_1_status") not in
-      ["unknown","unavailable","normal"]}}
-actions:
+    value_template: '{{states("sensor.nas2_volume_1_status") not in ["unknown","unavailable","normal"]}}'
+  actions:
   - action: open_epaper_link.setled
     target:
       device_id:
-        - 064e96e4222d172d8ee72fb541f96b09
+      - 064e96e4222d172d8ee72fb541f96b09
     data:
       mode: flash
       brightness: 8
       repeats: 100
       color1:
-        - 255
-        - 0
-        - 0
+      - 255
+      - 0
+      - 0
       flashSpeed1: 0.5
       flashCount1: 2
       delay1: 0.1
       color2:
-        - 255
-        - 0
-        - 0
+      - 255
+      - 0
+      - 0
       flashSpeed2: 0.5
       flashCount2: 2
       delay2: 0.1
       color3:
-        - 255
-        - 0
-        - 0
+      - 255
+      - 0
+      - 0
       flashSpeed3: 0.5
       flashCount3: 2
       delay3: 0
-mode: single
+  mode: single

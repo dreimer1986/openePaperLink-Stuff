@@ -1,16 +1,14 @@
-alias: Bilderrahmen Mosaik
-description: ""
-triggers:
+- id: '1751582675055'
+  alias: Bilderrahmen Mosaik
+  description: ''
+  triggers:
   - trigger: time_pattern
     hours: /1
-conditions:
+  conditions:
   - condition: time
-    after: "06:00:00"
-    before: "02:00:00"
-  - condition: state
-    entity_id: sensor.pixel_7_pro_wi_fi_connection
-    state: Asgaard
-actions:
+    after: 06:00:00
+    before: 02:00:00
+  actions:
   - action: shell_command.random_img_url_mosaique
     metadata: {}
     data: {}
@@ -27,13 +25,13 @@ actions:
       rotate: 0
       dry-run: false
       payload:
-        - type: dlimg
-          url: frame_temp/tempframe1.jpg
-          x: 0
-          "y": 0
-          resize_method: cover
-          xsize: 296
-          ysize: 152
+      - type: dlimg
+        url: frame_temp/tempframe1.jpg
+        x: 0
+        y: 0
+        resize_method: cover
+        xsize: 296
+        ysize: 152
     target:
       device_id: 81f54eb3b2de1f9170283dd068c4923e
   - delay:
@@ -49,13 +47,13 @@ actions:
       rotate: 0
       dry-run: false
       payload:
-        - type: dlimg
-          url: frame_temp/tempframe2.jpg
-          x: 0
-          "y": 0
-          resize_method: cover
-          xsize: 296
-          ysize: 152
+      - type: dlimg
+        url: frame_temp/tempframe2.jpg
+        x: 0
+        y: 0
+        resize_method: cover
+        xsize: 296
+        ysize: 152
     target:
       device_id: d289b497b44e2d5a8458e1f8bb8bf698
   - delay:
@@ -71,13 +69,13 @@ actions:
       rotate: 0
       dry-run: false
       payload:
-        - type: dlimg
-          url: frame_temp/tempframe3.jpg
-          x: 0
-          "y": 0
-          resize_method: cover
-          xsize: 296
-          ysize: 152
+      - type: dlimg
+        url: frame_temp/tempframe3.jpg
+        x: 0
+        y: 0
+        resize_method: cover
+        xsize: 296
+        ysize: 152
     target:
       device_id: 51eccc4e8ff1efd3e3e82938c9ba18e7
   - delay:
@@ -93,13 +91,13 @@ actions:
       rotate: 0
       dry-run: false
       payload:
-        - type: dlimg
-          url: frame_temp/tempframe4.jpg
-          x: 0
-          "y": 0
-          resize_method: cover
-          xsize: 296
-          ysize: 152
+      - type: dlimg
+        url: frame_temp/tempframe4.jpg
+        x: 0
+        y: 0
+        resize_method: cover
+        xsize: 296
+        ysize: 152
     target:
       device_id: 96f45dfa34e9bd962b6adfd0abd31f10
   - delay:
@@ -115,13 +113,13 @@ actions:
       rotate: 0
       dry-run: false
       payload:
-        - type: dlimg
-          url: frame_temp/tempframe5.jpg
-          x: 0
-          "y": 0
-          resize_method: cover
-          xsize: 296
-          ysize: 152
+      - type: dlimg
+        url: frame_temp/tempframe5.jpg
+        x: 0
+        y: 0
+        resize_method: cover
+        xsize: 296
+        ysize: 152
     target:
       device_id: 0fc632bdd0e23daf43e32ed6d094966e
   - delay:
@@ -137,13 +135,13 @@ actions:
       rotate: 0
       dry-run: false
       payload:
-        - type: dlimg
-          url: frame_temp/tempframe6.jpg
-          x: 0
-          "y": 0
-          resize_method: cover
-          xsize: 296
-          ysize: 152
+      - type: dlimg
+        url: frame_temp/tempframe6.jpg
+        x: 0
+        y: 0
+        resize_method: cover
+        xsize: 296
+        ysize: 152
     target:
       device_id: 32204bc0be5e6043d90207acae78ccdb
-mode: single
+  mode: single
