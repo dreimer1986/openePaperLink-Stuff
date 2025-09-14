@@ -2,7 +2,7 @@
 
 Archive of my openePaperLink Tags Stuff. Some Stuff is hand made, some stuff was converted for other Tag sizes and resolutions:
 
-IMPORTANT: I use my own firmware build for all these, so no guarantee if it works perfect on the official firmware. What is different in mine you ask? Notning except it's kinda a nightly. Any update they make in the official firmware repo is on my side, too. I just make releases way more often. Link: https://github.com/dreimer1986/OpenEPaperLink
+IMPORTANT: I use my own firmware build for all these, so no guarantee if it works perfect on the official firmware. What is different in mine you ask? Nothing except it's kinda a nightly. Any update they make in the official firmware repo is on my side, too. I just make releases way more often, or to be precise... I make a release on every update they commit. Link: https://github.com/dreimer1986/OpenEPaperLink
 
 Converts:
 
