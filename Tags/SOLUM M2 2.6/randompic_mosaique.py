@@ -1,5 +1,8 @@
 import os, random, json
 
+# Additional manual NSFW Blocker
+nsfw = 1
+
 # These scripts use some stuff that might be missing after every update of Home Assistant.
 # So if it's missing, reinstall it, bypassing errors and a not working script...
 try:
@@ -43,11 +46,13 @@ NSFWState = NSFWData["state"]
 
 # Pr0n or not, that's the question ^^
 # And by random choose the folder to use if pr0n is fine.
-if NSFWState == 'home':
+if NSFWState == 'home' and nsfw == 0::
     folders = ['NSFW','Safe']
     selected_folder = random.choice(folders)
+    print ("NSFW Mode active")
 else:
     selected_folder = 'Safe'
+    print ("Safe Mode active")
 
 # Hop into the folder, choose a random image and open it.
 os.chdir('./media/' + selected_folder)
