@@ -1,7 +1,7 @@
 import os, random, json
 
 # Additional manual NSFW Blocker
-nsfw = 1
+nsfw = 0
 
 # These scripts use some stuff that might be missing after every update of Home Assistant.
 # So if it's missing, reinstall it, bypassing errors and a not working script...
