@@ -1,14 +1,13 @@
-- id: '1747691201858'
-  alias: Zucker anzeigen
-  description: ''
-  triggers:
+alias: Zucker anzeigen
+description: ""
+triggers:
   - trigger: time_pattern
     minutes: /26
-  conditions:
+conditions:
   - condition: time
-    after: 06:00:00
-    before: 02:00:00
-  actions:
+    after: "06:00:00"
+    before: "02:00:00"
+actions:
   - action: open_epaper_link.drawcustom
     data:
       ttl: 86400
@@ -17,53 +16,78 @@
       rotate: 0
       dry-run: false
       payload:
-      - type: rectangle
-        x_start: 1
-        x_end: 210
-        y_start: 15
-        y_end: 80
-        width: 1
-        fill: white
-        outline: black
-      - type: text
-        value: 'Zucker: {{ states(''sensor.daniel_reimer_glucose_level'') }} mg/dl'
-        x: 5
-        y: 20
-        font: ppb.ttf
-        size: 20
-        color: "{% if states('sensor.daniel_reimer_glucose_level')|int <= state_attr('sensor.daniel_reimer_glucose_level','target_low_mg_dl')
-          %}\n  accent\n{% elif states('sensor.daniel_reimer_glucose_level')|int >=
-          state_attr('sensor.daniel_reimer_glucose_level','target_high_mg_dl') %}\n
-          \ accent\n{% else %}\n  black\n{% endif %}"
-      - type: icon
-        value: '{{ state_attr(''sensor.daniel_reimer_glucose_level'',''icon'') }}'
-        x: 187
-        y: 20
-        size: 20
-        color: "{% if states('sensor.daniel_reimer_glucose_level')|int <= state_attr('sensor.daniel_reimer_glucose_level','target_low_mg_dl')
-          %}\n  accent\n{% elif states('sensor.daniel_reimer_glucose_level')|int >=
-          state_attr('sensor.daniel_reimer_glucose_level','target_high_mg_dl') %}\n
-          \ accent\n{% else %}\n  black\n{% endif %}"
-      - type: text
-        value: 'Ablauf: {{ (states(''sensor.daniel_reimer_sensor_expiry'')|as_datetime
-          - now()).days }} {{ ("Tage" if (states(''sensor.daniel_reimer_sensor_expiry'')|as_datetime
-          - now()).days > 1 else "Tag") }}'
-        x: 5
-        y: 50
-        font: ppb.ttf
-        size: 20
-        color: "{% if (states('sensor.daniel_reimer_sensor_expiry')|as_datetime -
-          now()).days <= 3 %}\n  accent\n{% else %}\n  black\n{% endif %}"
-      - type: text
-        value: 'Wert-Alter: {{as_datetime(as_timestamp(now()) - as_timestamp(strptime(state_attr(''sensor.daniel_reimer_glucose_level'',
-          ''value_timestamp''), ''%m/%d/%Y %I:%M:%S %p''))).minute}} Min. von: {{
-          states(''sensor.time_date'') | string }}'
-        font: ppb.ttf
-        x: 2
-        y: 104
-        size: 10
-        color: black
-        anchor: lb
+        - type: rectangle
+          x_start: 1
+          x_end: 210
+          y_start: 15
+          y_end: 80
+          width: 1
+          fill: white
+          outline: black
+        - type: text
+          value: "Zucker: {{ states('sensor.daniel_reimer_measurement') }} mg/dl"
+          x: 5
+          "y": 20
+          font: ppb.ttf
+          size: 20
+          color: >-
+            {% if states('sensor.daniel_reimer_measurement')|int <=
+            state_attr('sensor.daniel_reimer_measurement','target_low_mg_dl') %}
+              accent
+            {% elif states('sensor.daniel_reimer_measurement')|int >=
+            state_attr('sensor.daniel_reimer_measurement','target_high_mg_dl')
+            %}
+              accent
+            {% else %}
+              black
+            {% endif %}
+        - type: icon
+          value: "{{ state_attr('sensor.daniel_reimer_measurement','icon') }}"
+          x: 187
+          "y": 20
+          size: 20
+          color: >-
+            {% if states('sensor.daniel_reimer_measurement')|int <=
+            state_attr('sensor.daniel_reimer_measurement','target_low_mg_dl') %}
+              accent
+            {% elif states('sensor.daniel_reimer_measurement')|int >=
+            state_attr('sensor.daniel_reimer_measurement','target_high_mg_dl')
+            %}
+              accent
+            {% else %}
+              black
+            {% endif %}
+        - type: text
+          value: >-
+            Ablauf: {{
+            (states('sensor.daniel_reimer_expiration_timestamp')|as_datetime -
+            now()).days }} {{ ("Tage" if
+            (states('sensor.daniel_reimer_expiration_timestamp')|as_datetime -
+            now()).days > 1 else "Tag") }}
+          x: 5
+          "y": 50
+          font: ppb.ttf
+          size: 20
+          color: >-
+            {% if
+            (states('sensor.daniel_reimer_expiration_timestamp')|as_datetime -
+            now()).days <= 3 %}
+              accent
+            {% else %}
+              black
+            {% endif %}
+        - type: text
+          value: >-
+            Wert-Alter: {{as_datetime(as_timestamp(now()) -
+            as_timestamp(strptime(state_attr('sensor.daniel_reimer_measurement',
+            'value_timestamp'), '%m/%d/%Y %I:%M:%S %p'))).minute}} Min. von: {{
+            states('sensor.time_date') | string }}
+          font: ppb.ttf
+          x: 2
+          "y": 104
+          size: 10
+          color: black
+          anchor: lb
     target:
       device_id: daf014ddf8b95bc5adcb7cfbff8aa859
-  mode: single
+mode: single
