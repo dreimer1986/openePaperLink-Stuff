@@ -1,2 +1,2 @@
 shell_command:
-  random_img_url_mosaique: python3 randompic_mosaique.py
+  random_img_url_mosaique: python3 scripts/randompic_mosaique.py

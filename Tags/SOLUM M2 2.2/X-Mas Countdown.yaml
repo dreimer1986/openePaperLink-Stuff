@@ -60,7 +60,8 @@ actions:
           anchor: mm
     action: open_epaper_link.drawcustom
     target:
-      device_id: ad56f2a9017d86d2dd2e4c901f633e30
+      device_id:
+        - 81f54eb3b2de1f9170283dd068c4923e
 mode: restart
 variables:
   days_until_xmas: >-

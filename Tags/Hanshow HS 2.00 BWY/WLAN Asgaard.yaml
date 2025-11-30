@@ -1,14 +1,13 @@
-- id: '1747716116329'
-  alias: WLAN Asgaard QR 2.0"
-  description: ''
-  triggers:
+alias: WLAN Asgaard QR 2.0"
+description: ""
+triggers:
   - trigger: time
-    at: 01:00:00
-  conditions:
+    at: "01:00:00"
+conditions:
   - condition: time
-    after: 06:00:00
-    before: 02:00:00
-  actions:
+    after: "06:00:00"
+    before: "02:00:00"
+actions:
   - action: open_epaper_link.drawcustom
     metadata: {}
     data:
@@ -18,30 +17,30 @@
       rotate: 0
       dry-run: false
       payload:
-      - type: qrcode
-        data: WIFI:T:WPA;S:Asgaard;P:reimer1218;;
-        x: 0
-        y: 0
-        boxsize: 4
-        border: 0
-        color: black
-        bgcolor: white
-      - type: line
-        x_start: 0
-        x_end: 152
-        y_start: 160
-        y_end: 160
-        width: 1
-        fill: black
-      - type: text
-        value: 'WLAN: Asgaard'
-        font: ppb.ttf
-        x: 76
-        y: 180
-        size: 12
-        color: black
-        anchor: mm
+        - type: qrcode
+          data: WIFI:T:WPA;S:Asgaard;P:reimer1218;;
+          x: 0
+          "y": 0
+          boxsize: 4
+          border: 0
+          color: black
+          bgcolor: white
+        - type: line
+          x_start: 0
+          x_end: 152
+          y_start: 160
+          y_end: 160
+          width: 1
+          fill: black
+        - type: text
+          value: "WLAN: Asgaard"
+          font: ppb.ttf
+          x: 76
+          "y": 180
+          size: 12
+          color: black
+          anchor: mm
     target:
       device_id:
-      - 5e39e32fc0fe0c5203cdc0eb06e735fc
-  mode: single
+        - 3c19a829b7b8bb139a430706ed3dde2a
+mode: single

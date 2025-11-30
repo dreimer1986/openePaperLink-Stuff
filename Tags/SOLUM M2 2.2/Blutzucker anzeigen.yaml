@@ -30,13 +30,10 @@ actions:
           "y": 20
           font: ppb.ttf
           size: 20
-          color: >-
-            {% if states('sensor.daniel_reimer_measurement')|int <=
-            state_attr('sensor.daniel_reimer_measurement','target_low_mg_dl') %}
+          color: |-
+            {% if states('binary_sensor.daniel_reimer_is_low') == "on"  %}
               accent
-            {% elif states('sensor.daniel_reimer_measurement')|int >=
-            state_attr('sensor.daniel_reimer_measurement','target_high_mg_dl')
-            %}
+            {% elif states('binary_sensor.daniel_reimer_is_high') == "on"  %}
               accent
             {% else %}
               black
@@ -46,13 +43,10 @@ actions:
           x: 187
           "y": 20
           size: 20
-          color: >-
-            {% if states('sensor.daniel_reimer_measurement')|int <=
-            state_attr('sensor.daniel_reimer_measurement','target_low_mg_dl') %}
+          color: |-
+            {% if states('binary_sensor.daniel_reimer_is_low') == "on"  %}
               accent
-            {% elif states('sensor.daniel_reimer_measurement')|int >=
-            state_attr('sensor.daniel_reimer_measurement','target_high_mg_dl')
-            %}
+            {% elif states('binary_sensor.daniel_reimer_is_high') == "on"  %}
               accent
             {% else %}
               black
@@ -78,10 +72,9 @@ actions:
             {% endif %}
         - type: text
           value: >-
-            Wert-Alter: {{as_datetime(as_timestamp(now()) -
-            as_timestamp(strptime(state_attr('sensor.daniel_reimer_measurement',
-            'value_timestamp'), '%m/%d/%Y %I:%M:%S %p'))).minute}} Min. von: {{
-            states('sensor.time_date') | string }}
+            Wert-Alter: {{ ((as_timestamp(now()) -
+            as_timestamp(states.sensor.daniel_reimer_measurement.last_changed))
+            / 60) | int }} Min. von: {{ states('sensor.time_date') | string }}
           font: ppb.ttf
           x: 2
           "y": 104
@@ -89,5 +82,6 @@ actions:
           color: black
           anchor: lb
     target:
-      device_id: daf014ddf8b95bc5adcb7cfbff8aa859
+      device_id:
+        - daf014ddf8b95bc5adcb7cfbff8aa859
 mode: single
